@@ -26,7 +26,7 @@ To start, you’ll need three environment variables:
 ### Running the bot
 
 1. Build a .env file with the values for the environment variables above
-2. Deploy this somewhere like glitch
+2. Deploy this somewhere like glitch - Can be easily deployed remixing: https://glitch.com/edit/#!/cheerful-curse-hell
 3. In owncast create a hook pointing to your apps address:
 ```
 webhooks:

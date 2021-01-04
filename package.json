@@ -1,0 +1,23 @@
+{
+  "name": "twitch-owncast-rocketchat-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "tmi.js": "^1.7.1",
+    "ws": "^7.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/twitch-chatbot"
+  },
+  "author": "",
+  "license": "MIT"
+}

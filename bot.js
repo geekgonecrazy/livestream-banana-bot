@@ -53,6 +53,9 @@ async function handleMessage(source, author, text) {
         wsServer.clients.forEach(function each(client) {
             client.send(`{"type":"action", "action": "dance", "sender": "${author}(${source})"}`);
         });
+      
+        await sendToOwncast('Dance Banana Dance!');
+        await sendToRocketChat('SYSTEM', 'me', 'Dance Banana Dance!');
     }
 
     await sendToRocketChat(source, author, text);
@@ -72,6 +75,26 @@ async function sendToRocketChat(source, author, text) {
         console.log(`Status back: ${result.statusCode}`);
     } catch (e) {
         console.log('Error calling webhook', e);
+    }
+}
+
+async function sendToOwncast(text) {
+    try {
+        const owncastMessage = {
+            'body': text
+        };
+
+        console.log(`Sending Message To Owncast ${text}`);
+
+        const headers = {
+          Authorization: `Bearer ${process.env.OWNCAST_TOKEN}`
+        }
+      
+        const result = axios.post(`${process.env.OWNCAST_URL}/api/admin/sendsystemmessage`, owncastMessage, { headers });
+
+        console.log(`Status back: ${result.statusCode}`);
+    } catch (e) {
+        console.log('Error calling owncast', e);
     }
 }
 
@@ -100,7 +123,7 @@ app.post("/owncast", (req, res) => {
     if (req.query.secret == process.env.WEBHOOK_SECRET) {
         const body = req.body;
 
-        if (body.type && body.type == 'messageSent') {
+        if (body.type && body.type == 'CHAT') {
             if (body.eventData && body.eventData.rawBody) {
                 const message = body.eventData;
 

@@ -1,5 +1,4 @@
 # Livestream-banana-bot
-=================
 
 ## Chatbot Overview
 
